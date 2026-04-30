@@ -1,0 +1,28 @@
+{
+  "stage_0_raw_documents": 2459,
+  "stage_1_after_filtering": 871,
+  "stage_1_filter_stats": {
+    "line_too_short": 1399,
+    "low_alphabetic_ratio": 55,
+    "repeated_words": 60,
+    "non_english": 74
+  },
+  "stage_2_special_chars": {
+    "typographic_quotes": 0,
+    "zero_width_chars": 3
+  },
+  "stage_2_idempotency": true,
+  "stage_3_after_exact_dedup": 863,
+  "stage_3_exact_duplicates_removed": 8,
+  "stage_4_after_near_dedup": 862,
+  "stage_4_near_duplicates_removed": 1,
+  "stage_5_corpus_stats": {
+    "total_documents": 862,
+    "total_tokens": 8921,
+    "unique_tokens": 2055,
+    "type_to_token_ratio": 0.23035534132944738,
+    "avg_tokens_per_doc": 10.349187935034802,
+    "token_length_mean": 6.551171393341554,
+    "token_length_p95": 12.0
+  }
+}
