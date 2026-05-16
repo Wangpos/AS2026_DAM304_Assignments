@@ -1,0 +1,65 @@
+DAM304 Programming Assignment 2
+DAM304 Generative Artificial Intelligence
+Programming Assignment 2 (10% of CA Practical assessed out of 15 marks)
+LLM Pre-training
+Topic LLM Architecture, CLM/MLM Training,
+Optimization Techniques
+Related Units Units IV & V
+1. Overview
+This assignment brings together Units IV and V . You will design and pre-train a GPT-style
+language model of your own specification, applying at least two Unit V optimization techniques,
+and evaluate it by generating text and computing perplexity. The assignment is assessed
+independently and you make all architectural and training decisions and must justify them.
+Module Descriptor Alignment
+LO4: Design and construct core components of an LLM architecture.
+LO5: Develop effective pre-training strategies for large language models.
+Covers Units IV (4.1–4.3) and V (5.1–5.3). Assessed out of 15 marks.
+2. Assignment Tasks
+Part 1 : Architecture Design and Justification (25 marks)
+1. Build a decoder-only GPT-style model in PyTorch (no HuggingFace model classes).
+Constraints: 1–15 million parameters; pre-layer normalisation; causal masking; sinusoidal
+or learned positional encoding; tied embedding/LM head weights.
+2. Complete an architecture decision table in your report for: d_model, num_heads,
+num_layers, d_ff, max_seq_len, and vocab_size — with a one-sentence justification for
+each choice.
+3. Verify: forward pass on (2, 64) input produces logits of shape (2, 64, vocab_size). Print
+parameter breakdown: embedding, per-block, LM head, total.
+Part 2 : Training Pipeline with Unit V Techniques (40 marks)
+You must implement at least TWO of the following and document which you chose:
+•
+•
+•
+Mixed precision training using torch.cuda.amp (Section 5.2.2)
+Gradient accumulation with effective batch size >= 128 (Section 5.2.3)
+Warmup + cosine decay LR schedule (Section 5.3.1)
+College of Science and Technology
+DAM304 Programming Assignment 2
+4. Train on a text corpus of your choice (minimum 200KB). Describe source, size, and
+domain in your report.
+5. Use AdamW (weight_decay=0.01) with gradient clipping (max_norm=1.0). Train until
+convergence or 200 epochs maximum.
+6. Plot training loss vs epoch. Final loss must be below 1.5 (cross-entropy). Report final
+perplexity = exp(final_loss).
+Part 3 : Text Generation and Evaluation (35 marks)
+7. Implement all three decoding strategies in a single generate(model, prompt, strategy,
+**kwargs) function: greedy, top-k (configurable k), and top-p (configurable p and
+temperature).
+8. Generate 150 tokens from two prompts with all three strategies. Present in a table
+(prompt | strategy | output).
+9. Temperature ablation: generate 3 outputs each at temperatures 0.5, 1.0, and 1.5 using
+top-p. Discuss the coherence-diversity trade-off in your report.
+10. Error analysis: identify three failure modes of your model. For each, propose a concrete
+fix.
+3. Deliverables
+What to Submit
+model.py — Architecture with count_parameters.
+train.py — Training pipeline with selected Unit V techniques.
+generate.py — All three decoding strategies.
+corpus/ — Training text and source documentation.
+results/ — Loss curve PNG, generation table CSV , temperature outputs.
+report.pdf — Max 4 pages, prescribed format.
+Important Notes
+Model must be implemented in PyTorch from scratch. HuggingFace model classes are NOT
+permitted.
+The HuggingFace tokenizers library is permitted for BPE tokenizer training only.
+College of Science and Technology
